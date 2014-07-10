@@ -16,12 +16,6 @@ before_action :correct_user,   only: [:edit, :update]
     @user = User.new
   end
 
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted."
-    redirect_to users_url
-  end
-
  def create
     @user = User.new(user_params)
     if @user.save
@@ -45,6 +39,12 @@ before_action :correct_user,   only: [:edit, :update]
     else
       render 'edit'
     end
+  end
+
+   def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted."
+    redirect_to users_url
   end
 
   private
